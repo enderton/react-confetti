@@ -26,7 +26,7 @@ function drawSnowflake(ctx) {
 storiesOf('Props|Demos', module)
   .add('Snow', () => (
     <SizedConfetti
-      drawShape={drawSnowflake}
+      drawShapes={[drawSnowflake]}
       colors={['#AEE1FF', '#CBDDF8']}
       gravity={0.03}
       wind={0.01}

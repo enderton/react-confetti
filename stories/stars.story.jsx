@@ -24,6 +24,6 @@ function drawStar(ctx) {
 storiesOf('Props|Demos', module)
   .add('Stars', () => (
     <SizedConfetti
-      drawShape={drawStar}
+      drawShapes={[drawStar]}
     />
   ))

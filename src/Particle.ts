@@ -17,6 +17,7 @@ export default class Particle {
     this.getOptions = getOptions
     const {
       colors,
+      drawShapes,
       initialVelocityX,
       initialVelocityY,
     } = this.getOptions()
@@ -34,6 +35,9 @@ export default class Particle {
     this.color = colors[Math.floor(Math.random() * colors.length)]
     this.rotateY = randomRange(0, 1)
     this.rotationDirection = randomRange(0, 1) ? RotationDirection.Positive : RotationDirection.Negative
+    if(drawShapes && Array.isArray(drawShapes)) {
+      this.drawShape = drawShapes[randomInt(0, drawShapes.length - 1)]
+    }
   }
 
   context: CanvasRenderingContext2D
@@ -65,6 +69,8 @@ export default class Particle {
 
   rotationDirection: RotationDirection
 
+  drawShape?: (context: CanvasRenderingContext2D) => void
+
   getOptions: () => IConfettiOptions
 
   update() {
@@ -73,7 +79,6 @@ export default class Particle {
       wind,
       friction,
       opacity,
-      drawShape,
     } = this.getOptions()
     this.x += this.vx
     this.y += this.vy
@@ -102,8 +107,8 @@ export default class Particle {
     this.context.globalAlpha = opacity
     this.context.lineCap = 'round'
     this.context.lineWidth = 2
-    if(drawShape && typeof drawShape === 'function') {
-      drawShape.call(this, this.context)
+    if(this.drawShape && typeof this.drawShape === 'function') {
+      this.drawShape(this.context)
     } else {
       switch(this.shape) {
         case ParticleShape.Circle: {

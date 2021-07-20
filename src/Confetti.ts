@@ -88,9 +88,9 @@ export interface IConfettiOptions {
    */
   tweenDuration: number
   /**
-   * Function to draw your own confetti shapes.
+   * Array of functions to draw your own confetti shapes.
    */
-  drawShape?: (context: CanvasRenderingContext2D) => void
+  drawShapes?: ((context: CanvasRenderingContext2D) => void)[]
   /**
    * Function called when all confetti has fallen off-canvas.
    */

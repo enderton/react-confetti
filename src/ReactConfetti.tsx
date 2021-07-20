@@ -12,8 +12,8 @@ class ReactConfettiInternal extends Component<Props> {
 
   static readonly displayName = 'ReactConfetti'
 
-  constructor(props: Props, ...rest: any[]) {
-    super(props, ...rest)
+  constructor(props: Props) {
+    super(props)
     this.canvas = props.canvasRef as React.RefObject<HTMLCanvasElement> || ref
   }
 
@@ -73,7 +73,7 @@ function extractCanvasProps(props: Partial<IConfettiOptions> | any): [Partial<IC
   const confettiOptions: Partial<IConfettiOptions> = {}
   const refs: Refs = {}
   const rest: any = {}
-  const confettiOptionKeys = [...Object.keys(confettiDefaults), 'confettiSource', 'drawShape', 'onConfettiComplete']
+  const confettiOptionKeys = [...Object.keys(confettiDefaults), 'confettiSource', 'drawShapes', 'onConfettiComplete']
   const refProps = ['canvasRef']
   for(const prop in props) {
     const val = props[prop as string]
